@@ -1,38 +1,36 @@
 <idea-plugin>
-  <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
-  <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <id>cn.alanhe.plugin.viewPackageVersions</id>
+    <name>View Package Versions</name>
+    <version>1.0.0</version>
+    <vendor email="i@alanhe.me" url="https://github.com/alanhg/view-package-versions">Personal</vendor>
 
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+    <description><![CDATA[
+      View Selected Package Available Versions.<br>
     ]]></description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
-    ]]>
-  </change-notes>
+    <change-notes>
+        <![CDATA[
+                      <p>1.0</p>
+               ]]>
+    </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="173.0"/>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <depends>com.intellij.modules.platform</depends>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 
-  <actions>
-    <!-- Add your actions here -->
-    <action id="ViewPackageVersions" class="cn.alanhe.ViewPackageVersions"
-            text="View Package Versions"
-            icon="/icon/bookmarker.png">
-      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-    </action>
-  </actions>
-
+    <actions>
+        <!-- Add your actions here -->
+        <action id="ViewPackageVersions" class="cn.alanhe.ViewPackageVersions"
+                text="View Selected Package Versions"
+                icon="/icon/icon.png">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

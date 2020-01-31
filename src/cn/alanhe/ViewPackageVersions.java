@@ -4,18 +4,25 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.popup.IPopupChooserBuilder;
+import com.intellij.openapi.ui.popup.JBPopup;
+import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,7 +54,7 @@ public class ViewPackageVersions extends AnAction {
         String packageName = getPackageName((LeafPsiElement) firstParent);
         try {
             List<String> versions = this.getPackageVersions(packageName);
-//            this.showPopup(packageName, versions);
+            this.showPopup(packageName, versions, editor);
         } catch (IOException | InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -79,8 +86,23 @@ public class ViewPackageVersions extends AnAction {
         return result;
     }
 
+    private void showPopup(String name, List<String> versions, Editor editor) {
+        IPopupChooserBuilder<String> popupChooserBuilder = JBPopupFactory.getInstance().createPopupChooserBuilder(versions);
+        popupChooserBuilder.setTitle(name);
+        JBPopup popup = popupChooserBuilder.createPopup();
+        popup.setMinimumSize(new Dimension(80, 0));
+        popup.showInBestPositionFor(editor);
+    }
 
-//    public void showPopup(String name, List<String> versions) {
-//        JBPopupFactory.getInstance().createListPopup(new BaseListPopupStep(name, versions));
-//    }
+    @Override
+    public void update(@NotNull AnActionEvent e) {
+        PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
+        String filename = psiFile.getVirtualFile().getName();
+        Presentation presentation = e.getPresentation();
+        if ("package.json".equals(filename)) {
+            presentation.setEnabledAndVisible(true);
+            return;
+        }
+        presentation.setEnabledAndVisible(false);
+    }
 }
