@@ -2,7 +2,7 @@
     <id>cn.alanhe.plugin.viewPackageVersions</id>
     <name>View Package Versions</name>
     <version>1.0.0</version>
-    <vendor email="i@alanhe.me" url="https://github.com/alanhg/view-package-versions">Personal</vendor>
+    <vendor email="i@alanhe.me" url="https://github.com/alanhg/view-package-versions">Alan He</vendor>
 
     <description><![CDATA[
       View Selected Package Available Versions.<br>
