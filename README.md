@@ -14,3 +14,7 @@ yarn info webpack versions
 1. 获取用户光标聚焦的包名
 2. 执行命令获取包版本历史
 3. 弹窗列表展示
+
+## 使用
+
+![](./docs/screenshot.gif)
