@@ -5,7 +5,7 @@
     <vendor email="i@alanhe.me" url="https://github.com/alanhg/view-package-versions">Alan He</vendor>
 
     <description><![CDATA[
-      View Selected Package Available Versions.<br>
+      View all the versons of a node module.<br>
     ]]></description>
 
     <change-notes>
