@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.lang.reflect.Type;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -72,7 +72,7 @@ public class ViewPackageVersions extends AnAction {
         ArrayList<String> cmds = new ArrayList<>();
         cmds.add("npm");
         GeneralCommandLine generalCommandLine = new GeneralCommandLine(cmds);
-        generalCommandLine.setCharset(Charset.forName("UTF-8"));
+        generalCommandLine.setCharset(StandardCharsets.UTF_8);
         generalCommandLine.setWorkDirectory(project.getBasePath());
         generalCommandLine.addParameters("view", name, "versions", "--json");
         String commandLineOutputStr = ScriptRunnerUtil.getProcessOutput(generalCommandLine);
@@ -88,6 +88,7 @@ public class ViewPackageVersions extends AnAction {
         IPopupChooserBuilder<String> popupChooserBuilder = JBPopupFactory.getInstance().createPopupChooserBuilder(versions);
         popupChooserBuilder.setTitle(name);
         popupChooserBuilder.setResizable(true);
+        popupChooserBuilder.setNamerForFiltering(s -> s);
         JBPopup popup = popupChooserBuilder.createPopup();
         popup.setMinimumSize(new Dimension(80, 0));
         popup.showInBestPositionFor(editor);
