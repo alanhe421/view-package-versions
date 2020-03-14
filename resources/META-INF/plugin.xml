@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>cn.alanhe.plugin.viewPackageVersions</id>
     <name>View Package Versions</name>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <vendor email="i@alanhe.me" url="https://github.com/alanhg/view-package-versions">Alan He</vendor>
 
     <description><![CDATA[
@@ -10,6 +10,11 @@
 
     <change-notes>
         <![CDATA[
+         <p>1.2.0</p>
+           <ul>
+              <li>show latest version</li>
+              <li>popup set movable and Wider</li>
+            </ul>
         <p>1.1.0</p>
             <ul>
               <li>popup set resizable</li>
