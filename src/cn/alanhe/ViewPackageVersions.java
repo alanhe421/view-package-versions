@@ -89,8 +89,11 @@ public class ViewPackageVersions extends AnAction {
         popupChooserBuilder.setTitle(name);
         popupChooserBuilder.setResizable(true);
         popupChooserBuilder.setNamerForFiltering(s -> s);
+        popupChooserBuilder.setMovable(true);
+
+
         JBPopup popup = popupChooserBuilder.createPopup();
-        popup.setMinimumSize(new Dimension(80, 0));
+        popup.setMinimumSize(new Dimension(180, 0));
         popup.showInBestPositionFor(editor);
     }
 
