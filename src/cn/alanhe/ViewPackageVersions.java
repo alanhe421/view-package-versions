@@ -86,11 +86,13 @@ public class ViewPackageVersions extends AnAction {
 
     private void showPopup(String name, List<String> versions, Editor editor) {
         IPopupChooserBuilder<String> popupChooserBuilder = JBPopupFactory.getInstance().createPopupChooserBuilder(versions);
-        popupChooserBuilder.setTitle(name);
-        popupChooserBuilder.setResizable(true);
-        popupChooserBuilder.setNamerForFiltering(s -> s);
-        popupChooserBuilder.setMovable(true);
-
+        popupChooserBuilder.setTitle(name)
+                .setResizable(true)
+                .setNamerForFiltering(s -> s)
+                .setMovable(true)
+                .setRenderer(
+                        new VersionCellRender()
+                );
 
         JBPopup popup = popupChooserBuilder.createPopup();
         popup.setMinimumSize(new Dimension(180, 0));
