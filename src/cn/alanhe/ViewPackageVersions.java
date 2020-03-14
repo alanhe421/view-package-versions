@@ -25,7 +25,9 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class ViewPackageVersions extends AnAction {
+
+    private static final String AD_TEXT = "Press caps lock to view selected version detail";
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -90,12 +94,14 @@ public class ViewPackageVersions extends AnAction {
                 .setResizable(true)
                 .setNamerForFiltering(s -> s)
                 .setMovable(true)
-                .setRenderer(
-                        new VersionCellRender()
-                );
+                .setRenderer(new VersionCellRender())
+                .setAdText(AD_TEXT)
+                .registerKeyboardAction(
+                        KeyStroke.getKeyStroke(KeyEvent.VK_CAPS_LOCK, 0),
+                        new PackageActionListener());
 
         JBPopup popup = popupChooserBuilder.createPopup();
-        popup.setMinimumSize(new Dimension(180, 0));
+        popup.setMinimumSize(new Dimension(200, 0));
         popup.showInBestPositionFor(editor);
     }
 
