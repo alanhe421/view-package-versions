@@ -104,10 +104,10 @@ public class ViewPackageVersions extends AnAction {
         PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
         String filename = psiFile.getVirtualFile().getName();
         Presentation presentation = e.getPresentation();
-        if ("package.json".equals(filename)) {
-            presentation.setEnabledAndVisible(true);
+        if (!"package.json".equals(filename)) {
+            presentation.setEnabledAndVisible(false);
             return;
         }
-        presentation.setEnabledAndVisible(false);
+        presentation.setEnabledAndVisible(true);
     }
 }
